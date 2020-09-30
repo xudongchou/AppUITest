@@ -24,7 +24,6 @@ class TestLogin(unittest.TestCase):
       login.username_locate()
       login.passwd_locate()
       login.login_button()
-      pub.wait(5)
       login.workstudio()
       pub.wait(5)
       login.setting()

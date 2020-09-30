@@ -33,13 +33,17 @@ class Login:
         d(resourceId=self.passwd_element).send_keys(Passwd)
     def login_button(self):
         d(resourceId=self.login_button_element).click()
+        d.implicitly_wait(5)
+        d.screenshot()
+        # assert d(resourceId="com.creditease.vip_xzbx:id/tab_icon").exists
+
     def mine(self):
         d.xpath(self.mine_button_element).click()
     def workstudio(self):
         # d(resourceId=self.workstudio_element).click()
-        d.xpath(self.workstudio_element).click()
+        d.xpath(self.workstudio_element).click_exists()
     def setting(self):
-       d(resourceId=self.setting_element).click()
+       d(resourceId=self.setting_element).click_exists()
     def exit(self):
          d(resourceId=self.exit_element).click()
          d.app_stop("com.creditease.vip_xzbx")
