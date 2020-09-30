@@ -9,6 +9,10 @@
 """
 import uiautomator2 as  u2
 from settings.login_settings import UserName,Passwd
+from publicmethods.public import publicmethod
+pub1 = publicmethod()
+d = pub1.init_App()
+d.app_start("com.creditease.vip_xzbx")
 class Login:
     """
     正确账号密码登录
@@ -18,19 +22,26 @@ class Login:
         self.passwd_element = "com.creditease.vip_xzbx:id/et_pwd"
         self.login_button_element = "com.creditease.vip_xzbx:id/btnSignIn"
         self.mine_button_element = '//*[@resource-id="com.creditease.vip_xzbx:id/mainTabBar"]/android.widget.FrameLayout[3]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.ImageView[1]'
-        self.app = u2.connect()
-        self.app.app_start("com.creditease.vip_xzbx")
-
+        self.workstudio_element = '//*[@resource-id="com.creditease.vip_xzbx:id/mainTabBar"]/android.widget.FrameLayout[2]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.ImageView[1]'
+        self.setting_element = "com.creditease.vip_xzbx:id/ivWorkRoomSetting"
+        self.exit_element ="com.creditease.vip_xzbx:id/set_exitLy"
     def username_locate(self):
-        self.app.clear_text()
-        self.app(resourceId=self.username_element).send_keys(UserName)
+        d.clear_text()
+        d(resourceId=self.username_element).send_keys(UserName)
     def passwd_locate(self):
-        self.app(resourceId=self.passwd_element).clear_text()
-        self.app(resourceId=self.passwd_element).send_keys(Passwd)
+        d(resourceId=self.passwd_element).clear_text()
+        d(resourceId=self.passwd_element).send_keys(Passwd)
     def login_button(self):
-        self.app(resourceId=self.login_button_element).click()
+        d(resourceId=self.login_button_element).click()
     def mine(self):
-        self.app.xpath(self.mine_button_element).click()
-
+        d.xpath(self.mine_button_element).click()
+    def workstudio(self):
+        # d(resourceId=self.workstudio_element).click()
+        d.xpath(self.workstudio_element).click()
+    def setting(self):
+       d(resourceId=self.setting_element).click()
+    def exit(self):
+         d(resourceId=self.exit_element).click()
+         d.app_stop("com.creditease.vip_xzbx")
 
 
